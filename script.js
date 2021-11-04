@@ -3,14 +3,15 @@ var button = document.querySelector("#get-weather")
 // var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"
 
 function fetchData(){
+    document.getElementById("todayWeather").innerHTML='';
     var cityName = inputField.value
     var apiKey = "2eee9c3f6b64ba32b5110b438933027a"
     var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey
     // console.log(requestUrl)
-
+    
     fetch(requestUrl)
-        .then(function(response){
-            return response.json()
+    .then(function(response){
+        return response.json()
         })
         .then(function(weatherData){
             console.log(weatherData)
@@ -25,7 +26,7 @@ function fetchData(){
                 console.log(data)
                 console.log("hit")
 
-
+                
             var uvi = data.daily[0].uvi
             var humidity = data.daily[0].humidity
             var wind = data.daily[0].wind_speed
@@ -39,7 +40,7 @@ function fetchData(){
 
                 var cardDate = fiveDayContainer.children[i].children[1];
                 cardDate.innerHTML = moment().add(i+1,"day").format("L")
-
+                
                 var cardTemp = fiveDayContainer.children[i].children[2];
                 var dailyKTemp = data.daily[i+1].temp.day;
                 var dailyFTemp = ((dailyKTemp-273.15)*9/5 + 32).toFixed(2);
@@ -50,10 +51,10 @@ function fetchData(){
 
                 var cardWind = fiveDayContainer.children[i].children[4];
                 cardWind.innerHTML = "Wind Speed: " + data.daily[i+1].wind_speed
-
+                
                 var cardUvi = fiveDayContainer.children[i].children[5];
                 cardUvi.innerHTML = "UVI: " + data.daily[i+1].uvi
-
+                
             
               }
 
@@ -71,6 +72,10 @@ function fetchData(){
             var humidityTitle = document.createElement('h4');
             var windTitle = document.createElement('h4');
             var uviTitle = document.createElement('h4');
+            var todayWeather = document.createElement('div');
+            
+            todayWeather.setAttribute("class" , "row")
+            todayWeather.setAttribute("id" , "todayWeather")
 
             dateTitle.textContent = moment().format("LLLL")
             tempTitle.textContent = "Temperature:"
@@ -84,7 +89,7 @@ function fetchData(){
             var uviEl = document.createElement("p");
             console.log(Ftemp)
             console.log(Ktemp)
-
+            
 
 
             tempEl.textContent = Ftemp
@@ -97,20 +102,31 @@ function fetchData(){
             document.getElementById("todayWeather").append(humidityTitle);
             document.getElementById("todayWeather").append(windTitle);
             document.getElementById("todayWeather").append(uviTitle);
+            // append div to section
 
             tempTitle.append(tempEl);
             humidityTitle.append(humidityEl);
             windTitle.append(windEl);
             uviTitle.append(uviEl);
+            
+            if (uvi >= 8) {
+                console.log("red")
+              } else if (uvi < 8 && uvi >= 3) {
+                console.log("yellow")
+              } else {
+                console.log("green")
+              }
 
+            document.querySelector('#fiveDayTitle').removeAttribute('hidden')
+            document.querySelector('#fiveDayForecast').removeAttribute('hidden')
             
 
             })
             
-
+            
            
-
+            
         })
 	}
-
-button.addEventListener("click", fetchData)
+    
+    button.addEventListener("click", fetchData)
