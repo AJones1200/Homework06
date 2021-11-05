@@ -1,13 +1,11 @@
 var inputField = document.querySelector("#city")
 var button = document.querySelector("#get-weather")
-// var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"
 
 function fetchData(){
     document.getElementById("todayWeather").innerHTML='';
     var cityName = inputField.value
     var apiKey = "2eee9c3f6b64ba32b5110b438933027a"
     var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey
-    // console.log(requestUrl)
     
     fetch(requestUrl)
     .then(function(response){
@@ -86,7 +84,7 @@ function fetchData(){
             var tempEl = document.createElement("p");
             var humidityEl = document.createElement("p");
             var windEl = document.createElement("p");
-            var uviEl = document.createElement("p");
+            var uviEl = document.createElement("span");
             console.log(Ftemp)
             console.log(Ktemp)
             
@@ -97,12 +95,12 @@ function fetchData(){
             windEl.textContent = wind
             uviEl.textContent = uvi
 
+
             document.getElementById("todayWeather").append(dateTitle);
             document.getElementById("todayWeather").append(tempTitle);
             document.getElementById("todayWeather").append(humidityTitle);
             document.getElementById("todayWeather").append(windTitle);
             document.getElementById("todayWeather").append(uviTitle);
-            // append div to section
 
             tempTitle.append(tempEl);
             humidityTitle.append(humidityEl);
@@ -110,11 +108,13 @@ function fetchData(){
             uviTitle.append(uviEl);
             
             if (uvi >= 8) {
-                console.log("red")
+              span.style.backgroundColor = "red";
+
               } else if (uvi < 8 && uvi >= 3) {
-                console.log("yellow")
+                span.style.backgroundColor = "yellow";
+
               } else {
-                console.log("green")
+                span.style.backgroundColor = "green";
               }
 
             document.querySelector('#fiveDayTitle').removeAttribute('hidden')
