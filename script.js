@@ -108,13 +108,13 @@ function fetchData(){
             uviTitle.append(uviEl);
             
             if (uvi >= 8) {
-              span.style.backgroundColor = "red";
+              document.querySelector('span').style.backgroundColor = 'red';
 
               } else if (uvi < 8 && uvi >= 3) {
-                span.style.backgroundColor = "yellow";
+                document.querySelector('span').style.backgroundColor = 'yellow';
 
               } else {
-                span.style.backgroundColor = "green";
+                document.querySelector('span').style.backgroundColor = 'green';
               }
 
             document.querySelector('#fiveDayTitle').removeAttribute('hidden')
