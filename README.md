@@ -8,4 +8,4 @@ I fetched the data in the APIs to get back the information requested.
 I created a for loop to transmit the 5 day forecast onto each card, using innerHTML.
 I created if else statements regarding the UVI to make it's background various colors based on the rating (good, fair, bad) of the UVI. 
 I will create buttons of the last 5 cities searched and store their information in the page's local storage. (not working yet.) 
-
+THIS README AREA DOES NOT ALLOW ME TO COPY PASTE SCREENSHOT. PLEASE SEE THE SCREENSHOT FILE!!!!

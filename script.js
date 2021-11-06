@@ -6,7 +6,10 @@ function fetchData(){
     var cityName = inputField.value
     var apiKey = "2eee9c3f6b64ba32b5110b438933027a"
     var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey
-    
+    localStorage.setItem("savedCities", cityName);
+    //the storage must be in an array
+    // every time I store a new city, I must append it (hint. push()) to the already existing array
+
     fetch(requestUrl)
     .then(function(response){
         return response.json()
@@ -119,7 +122,7 @@ function fetchData(){
 
             document.querySelector('#fiveDayTitle').removeAttribute('hidden')
             document.querySelector('#fiveDayForecast').removeAttribute('hidden')
-            
+            saveCity(cityName)
 
             })
             
@@ -129,4 +132,29 @@ function fetchData(){
         })
 	}
     
+    function saveCity(cityName) {
+      console.log(cityName);
+      if (localStorage.getItem("savedCities")=== null) {
+        console.log("doesnt exist");
+        //create a button for the recently saved city
+      } else (console.log("exists"));
+      // 1. retrieve all city names in local storage
+      // 2. add new city name to list pulled from ls
+      // 3. save list again to ls
+      // 4. make loop each time it loops, make it loop for as long as this list is (5 cities)
+      // 5. every time it loops make new button element, give button text, which will be city name
+      // each button should have city name and attribute like; button.setAttribute("value", cityNameArray[i])
+      // event.target.value, pass into function 
+      // 6. first time it loops, button will get text of index 0. 
+      // 7. after giving button text content append it to area below the text
+      // 8. add event listener to that button, click, will have function of fetching data from city on button; set value
+      // so its same as cityname on button 
+
+
+    }
+
+    function historySearch() {
+      // do what was done in fetch data area 
+    }
+
     button.addEventListener("click", fetchData)
