@@ -7,6 +7,8 @@ function fetchData(){
     var apiKey = "2eee9c3f6b64ba32b5110b438933027a"
     var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey
     localStorage.setItem("savedCities", cityName);
+
+    // var storageArray = []
     //the storage must be in an array
     // every time I store a new city, I must append it (hint. push()) to the already existing array
 
