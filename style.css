@@ -59,3 +59,10 @@ button {
     line-height: 20px;
     width: 400px;
 }
+
+#storedCityList {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+   
+}
